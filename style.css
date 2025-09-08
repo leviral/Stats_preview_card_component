@@ -1,0 +1,248 @@
+:root, ::before, ::after {
+
+    /* Primary */
+    --clr-primary-bg: hsl(233, 47%, 7%);
+    --clr-primary-bgcard: hsl(244, 37%, 16%);
+    --clr-accent: hsl(277, 64%, 61%);
+
+    /* Neutral */
+    --clr-heading: hsl(0, 0%, 100%);
+    --clr-paragraph: hsla(0, 0%, 100%, 0.75);
+    --clr-stat-heading: hsla(0, 0%, 100%, 0.6);
+
+    --font-size: 15px;
+    --font-size-large: 1.75rem;
+
+    --ff_base: "Inter", sans-serif;
+    --ff_accent: "Lexend Deca", sans-serif;
+
+    --fweight_thin: 200;
+    --fweight_normal: 400;
+    --fweight_bold: 700;
+}
+
+@layer reset {
+    /* CSS Reset by Josh Comeau*/
+    /* 1. Use a more-intuitive box-sizing model */
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    * {
+        margin: 0;
+    }
+
+    /* 3. Enable keyword animations
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            interpolate-size: allow-keywords;
+        }
+    } */
+    body {
+        /* 4. Add accessible line-height */
+        line-height: 1.2;
+        /* 5. Improve text rendering */
+        -webkit-font-smoothing: antialiased;
+        /*noinspection CssNoGenericFontName*/
+        font-family: var(--ff_base);
+        font-size: var(--font-size);
+    }
+
+    /* 6. Improve media defaults */
+    img, picture, video, canvas, svg {
+        display: block;
+        max-width: 100%;
+    }
+
+    /* 7. Inherit fonts for form controls */
+    input, button, textarea, select {
+        font: inherit;
+    }
+
+    /* 8. Avoid text overflows */
+    p, h1, h2, h3, h4, h5, h6 {
+        overflow-wrap: break-word;
+    }
+
+    /* 9. Improve line wrapping */
+    p {
+        text-wrap: pretty;
+    }
+
+    /* 10. Create a root stacking context
+    #root, #__next {
+        isolation: isolate;
+    } */
+}
+
+html, body {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+
+    background-color: var(--clr-primary-bg);
+}
+
+main {
+    display: grid;
+    place-items: center;
+    padding-block-end: 3rem;
+    min-height: 100dvh;
+}
+
+.card {
+    background-color: var(--clr-primary-bgcard);
+    border-radius: .5rem;
+
+    display: grid;
+    overflow: hidden;
+
+    margin: 0.75rem;
+
+    max-width: 1110px;
+
+    @media (min-width: 750px) {
+        grid-template-columns: 1fr 1fr;
+        max-height: 445px;
+
+        & .card__picture {
+            order: 1;
+
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        & .card__content {
+            place-items: flex-start;
+            padding-block: clamp(var(--card-padding-block), 7vw, 5rem);
+            padding-inline-start: clamp(var(--card-padding-block), 7vw, 5rem);
+            padding-inline-end: clamp(var(--card-padding-block), 7vw, 7rem);
+
+            & .card__title, & p {
+                text-align: start;
+            }
+
+            & .card__title {
+                font-size: clamp(var(--font-size-large), 3.5vw, 2.25rem);
+            }
+
+            & .card__stats {
+                flex-direction: row;
+            }
+
+        }
+    }
+}
+
+.card__picture {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: var(--clr-accent);
+        mix-blend-mode: multiply;
+        opacity: .9;
+    }
+
+    & img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.card__content {
+    --card-gap: 1rem;
+    --card-gap-stats: 1.5rem;
+    --card-padding-block: 2.5rem;
+    --card-padding-inline: 2rem;
+
+    display: grid;
+    place-items: center;
+    gap: var(--card-gap);
+
+    padding-inline: var(--card-padding-inline);
+    padding-block: var(--card-padding-block);
+
+    & p {
+        text-align: center;
+    }
+
+    & .description {
+        color: var(--clr-paragraph);
+        font-weight: var(--fweight_thin);
+        line-height: 1.6;
+        letter-spacing: 0.025rem;
+        margin-bottom: 2rem;
+    }
+}
+
+.card__title {
+    color: var(--clr-heading);
+    text-align: center;
+    font-size: var(--font-size-large);
+    font-weight: var(--fweight_bold);
+
+    & span {
+        color: var(--clr-accent);
+    }
+}
+
+.card__stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-gap-stats);
+
+    & .card__stat_value {
+        color: var(--clr-heading);
+
+        font-size: 1.5rem;
+        font-weight: var(--fweight_bold);
+
+        padding-bottom: .5rem;
+    }
+
+    /*noinspection CssNoGenericFontName*/
+
+    & .card__stat_category {
+        color: var(--clr-stat-heading);
+        text-transform: uppercase;
+        letter-spacing: .1em;
+
+        font-size: .75rem;
+        font-weight: var(--fweight_thin);
+    }
+}
+
+.attribution {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+
+    height: 3rem;
+
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    border-top: 1px solid var(--clr-paragraph);
+    color: var(--clr-paragraph);
+
+    & a {
+        text-decoration: none;
+        color: var(--clr-heading);
+    }
+
+    @media (min-width: 750px) {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+
+
