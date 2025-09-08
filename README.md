@@ -49,15 +49,14 @@ Users should be able to:
 
 ### Useful resources
 
-- YouTube (https://youtu.be/B2WL6KkqhLQ?si=l2wPkvVTUhmENvaf)
+- [YouTube](https://youtu.be/B2WL6KkqhLQ?si=l2wPkvVTUhmENvaf)
 
 
 ## Author
 
-- GitHub - leviral(https://github.com/leviral)
+- GitHub - [leviral](https://github.com/leviral)
 - Frontend Mentor - [@leviral](https://www.frontendmentor.io/profile/leviral)
 
 
-## Acknowledgements 
-
+## Acknowledgments
 - Inspired by Kevin Powell
